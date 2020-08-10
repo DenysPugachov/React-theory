@@ -4,6 +4,18 @@ import PropTypes from "prop-types";
 import withClass from "../hoc/withClass";
 
 class Car extends React.Component {
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef();
+    }
+
+    //focus on input of certain component;
+    componentDidMount() {
+        if (this.props.index === 0) {
+            this.inputRef.current.focus();
+        }
+    }
+
     render() {
         const inputClasses = ["input"];
 
@@ -24,6 +36,7 @@ class Car extends React.Component {
                     Year: <strong>{this.props.year}</strong>
                 </p>
                 <input
+                    ref={this.inputRef} //reference for focus on input;
                     type="text"
                     onChange={this.props.onChangeName}
                     value={this.props.name}
@@ -38,6 +51,7 @@ class Car extends React.Component {
 Car.propTypes = {
     name: PropTypes.string.isRequired,
     year: PropTypes.number,
+    index: PropTypes.number,
     onchangeName: PropTypes.func,
     onDelete: PropTypes.func,
 };
