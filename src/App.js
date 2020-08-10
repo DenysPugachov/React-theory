@@ -1,19 +1,18 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./App.scss";
 import Car from "./Car/Car";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Counter from "./Counter/Counter";
 
 class App extends Component {
     constructor(props) {
-        console.log("App constructor");
         super(props);
 
         this.state = {
             cars: [
                 { name: "Ford", year: 2018 },
-                // { name: "Audi", year: 2016 },
-                // { name: "Mazda", year: 2010 },
+                { name: "Audi", year: 2016 },
+                { name: "Mazda", year: 2010 },
             ],
             pageTitle: "React components",
             showCars: true,
@@ -23,7 +22,6 @@ class App extends Component {
     onChangeName(name, index) {
         const car = this.state.cars[index];
         car.name = name;
-
         const cars = [...this.state.cars]; //clone array before change state
         cars[index] = car;
         this.setState({ cars });
@@ -39,16 +37,7 @@ class App extends Component {
         this.setState({ cars });
     }
 
-    // componentWillMount() {
-    // console.log("App componentWillMount");
-    // }
-
-    componentDidMount() {
-        console.log("App componentDidMount");
-    }
-
     render() {
-        console.log("App render");
         const divStyle = { textAlign: "center" };
 
         let cars = null;
@@ -70,12 +59,11 @@ class App extends Component {
 
         return (
             <div style={divStyle}>
-                {/* <h1>{this.state.pageTitle}</h1> */}
                 <h1>{this.props.title}</h1>
 
                 <Counter />
                 <hr />
-                <button style={{ marginTop: "20px" }} onClick={this.toggleCarsHandler}>
+                <button style={{ marginTop: "20px" }} className={"AppButton"} onClick={this.toggleCarsHandler}>
                     Toggle cars
                 </button>
                 <div
